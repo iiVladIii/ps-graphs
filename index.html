@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сравнительный анализ JavaScript-библиотек для визуализации графов</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.4.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.4.0/theme/night.min.css">
+    <style>
+        .reveal .slides {
+            height: 100%;
+            text-align: left;
+        }
+
+        .reveal h1 {
+            font-size: 1.4em;
+            margin-bottom: 40px;
+        }
+
+        .reveal h2 {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+
+        .reveal h3 {
+            font-size: 0.9em;
+        }
+
+        .reveal li {
+            font-size: 0.85em;
+            margin-bottom: 8px;
+        }
+
+        .reveal p {
+            font-size: 0.85em;
+        }
+
+        .reveal table {
+            font-size: 0.7em;
+            margin: 0 auto;
+            width: 90%;
+            border-collapse: collapse;
+        }
+
+        .reveal table th, .reveal table td {
+            padding: 5px;
+            text-align: left;
+        }
+
+        .reveal .big-text {
+            font-size: 1.1em;
+        }
+
+        .reveal .chart-placeholder {
+            width: 80%;
+            height: 300px;
+            margin: 0 auto;
+            background-color: #2a2a2a;
+            border: 2px dashed #666;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-style: italic;
+            color: #aaa;
+        }
+
+        .reveal .image-placeholder {
+            width: 70%;
+            height: 250px;
+            margin: 0 auto;
+            background-color: #2a2a2a;
+            border: 2px dashed #666;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-style: italic;
+            color: #aaa;
+        }
+
+        .reveal .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .accent-text {
+            color: #42affa;
+        }
+
+        .reveal .compact-table td, .reveal .compact-table th {
+            padding: 3px;
+            font-size: 0.95em;
+        }
+
+        .reveal .compact-table th {
+            padding-bottom: 1em;
+        }
+
+        .reveal .smaller-text {
+            font-size: 0.8em;
+        }
+
+        .reveal .columns {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .reveal .column {
+            width: 30%;
+        }
+    </style>
+    <script>
+        const BASE_PATH = '/ps-graphs';
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                const currentSrc = img.getAttribute('src');
+                if (currentSrc && !currentSrc.startsWith('http://') && !currentSrc.startsWith('https://')) {
+                    if (!currentSrc.startsWith(BASE_PATH)) {
+                        img.setAttribute('src', `${BASE_PATH}${currentSrc}`);
+                    }
+                }
+            });
+        });
+
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+
+
+        <section data-transition="concave">
+            <h1>Сравнительный анализ JavaScript-библиотек для визуализации графов в системе мониторинга беспроводных
+                сетей</h1>
+        </section>
+
+
+        <section data-transition="concave">
+            <h2>Актуальность</h2>
+            <ul>
+                <li>Мониторинг беспроводных сетей Wi-Fi требует эффективной визуализации данных в виде графов</li>
+                <li>Графовое представление помогает выявлять несанкционированные подключения</li>
+                <li>Визуализация упрощает обнаружение аномальных связей</li>
+                <li>Обеспечивает оперативное реагирование на инциденты безопасности</li>
+            </ul>
+        </section>
+
+
+        <section data-transition="concave">
+            <h2>Ключевые требования к визуализации</h2>
+            <ul class="big-text">
+                <li><span class="accent-text">Производительность</span> — быстрая обработка больших графов</li>
+                <li><span class="accent-text">Интерактивность</span> — удобное взаимодействие пользователя с графом</li>
+                <li><span class="accent-text">Масштабируемость</span> — эффективная работа с растущими данными</li>
+                <li><span class="accent-text">Информативность</span> — наглядное представление атрибутов</li>
+                <li><span class="accent-text">Реактивность</span> — динамическое обновление при изменении данных</li>
+            </ul>
+        </section>
+
+
+        <section data-transition="concave">
+            <h2>Исследуемые библиотеки</h2>
+            <ul>
+                <li><span class="accent-text">D3.js (v7.9.0)</span> — низкоуровневая библиотека для манипуляции
+                    документами на основе данных
+                </li>
+                <li><span class="accent-text">React Force Graph (v1.47.6 и 2D v1.27.1)</span> — высокоуровневая обертка
+                    над force-graph
+                </li>
+                <li><span class="accent-text">React Sigma (v1.2.35)</span> — React-обертка над библиотекой Sigma.js</li>
+            </ul>
+            <p>Критерии выбора библиотек:</p>
+            <ul>
+                <li>Популярность в сообществе разработчиков</li>
+                <li>Различные подходы к визуализации</li>
+                <li>Совместимость с современными фреймворками</li>
+            </ul>
+        </section>
+
+
+        <section data-transition="concave">
+            <h2>Тестовые данные и окружение</h2>
+            <table class="compact-table" style="border: 1px solid #666; width: 100%; margin-top: 20px;">
+                <thead>
+                <tr>
+                    <th colspan="2" style="border: 1px solid #666; padding: 8px;">Параметры тестовой платформы</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td style="border: 1px solid #666; padding: 8px; width: 50%;"><b>Аппаратное окружение</b></td>
+                    <td style="border: 1px solid #666; padding: 8px; width: 50%;"><b>Программное окружение</b></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #666; padding: 8px;">MacBook Pro (чип M3 Pro)</td>
+                    <td style="border: 1px solid #666; padding: 8px;">macOS Sequoia (15.4)</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #666; padding: 8px;">Оперативная память: 18 ГБ</td>
+                    <td style="border: 1px solid #666; padding: 8px;">Google Chrome (135)</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #666; padding: 8px;">SSD-накопитель: 512 ГБ</td>
+                    <td style="border: 1px solid #666; padding: 8px;"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #666; padding: 8px;">GPU: Apple M3 Pro</td>
+                    <td style="border: 1px solid #666; padding: 8px;"></td>
+                </tr>
+                </tbody>
+            </table>
+            <p><b>Набор данных:</b></p>
+            <ul>
+                <li>Более 13000 уникальных устройств</li>
+                <li>Около 50 защищаемых точек доступа WLAN</li>
+                <li>Множество сторонних устройств</li>
+                <li>Отслеживание несколькими сенсорами</li>
+            </ul>
+        </section>
+
+
+        <section data-transition="concave">
+            <h2>Архитектурные особенности библиотек</h2>
+            <div class="columns">
+                <div class="column">
+                    <h3>D3.js</h3>
+                    <ul class="smaller-text">
+                        <li>Низкоуровневая библиотека</li>
+                        <li>Прямой доступ к DOM</li>
+                        <li>Декларативный подход</li>
+                        <li>Модульная структура</li>
+                        <li>Data-join механизм</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>React Force Graph</h3>
+                    <ul class="smaller-text">
+                        <li>Высокоуровневая обертка</li>
+                        <li>WebGL-рендеринг</li>
+                        <li>Декларативный интерфейс</li>
+                        <li>Оптимизация производительности</li>
+                        <li>Event-driven взаимодействие</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>React Sigma</h3>
+                    <ul class="smaller-text">
+                        <li>Рендеринг на Canvas</li>
+                        <li>Специализированные алгоритмы</li>
+                        <li>Многоуровневая архитектура</li>
+                        <li>Плагинная система</li>
+                        <li>Оптимизация для больших графов</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+        <section data-transition="concave">
+            <h2>Функциональные возможности</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Характеристика</th>
+                    <th>D3.js</th>
+                    <th>React Force Graph</th>
+                    <th>React Sigma</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Размер библиотеки</td>
+                    <td>~39 KB</td>
+                    <td>~12 KB</td>
+                    <td>~57 KB</td>
+                </tr>
+                <tr>
+                    <td>Тип рендеринга</td>
+                    <td>SVG, Canvas</td>
+                    <td>WebGL, Canvas</td>
+                    <td>Canvas, WebGL</td>
+                </tr>
+                <tr>
+                    <td>Поддержка 3D</td>
+                    <td>Через расширения</td>
+                    <td>Да</td>
+                    <td>Нет</td>
+                </tr>
+                <tr>
+                    <td>Алгоритмы компоновки</td>
+                    <td>Многочисленные</td>
+                    <td>Force-directed</td>
+                    <td>ForceAtlas2, другие</td>
+                </tr>
+                <tr>
+                    <td>GitHub Stars</td>
+                    <td>>104K</td>
+                    <td>>7K</td>
+                    <td>>400</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+        <section data-transition="concave">
+            <h2>Методика оценки производительности</h2>
+            <div style="display: flex; justify-content: space-between;">
+                <div style="width: 48%;">
+                    <p><b>Ключевые показатели:</b></p>
+                    <ul>
+                        <li>Время рендеринга (мс)</li>
+                        <li>Время компоновки (мс)</li>
+                        <li>Время стабилизации (мс)</li>
+                        <li>Использование памяти (МБ)</li>
+                        <li>Количество узлов</li>
+                        <li>Количество связей</li>
+                    </ul>
+                </div>
+                <div style="width: 48%;">
+                    <p><b>Сценарии тестирования:</b></p>
+                    <ol>
+                        <li>Визуализация графа с различным количеством узлов (500, 1000, 5000, ~13500)</li>
+                        <li>Стабилизация графа после начальной загрузки</li>
+                        <li>Кастомизация визуального представления узлов и связей</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+        <section data-transition="concave">
+            <h2>Демонстрация D3.js</h2>
+            <div class="image-placeholder" style="height: 600px;">
+                <img src="/assets/webp/d3_5000.webp" alt="">
+            </div>
+
+        </section>
+        <section data-transition="concave">
+            <h2>Демонстрация D3.js</h2>
+            <div class="image-placeholder" style="height: 600px;">
+                <img src="/assets/webp/d3_all.webp" alt="">
+            </div>
+
+        </section>
+
+        <section data-transition="concave">
+            <h2>Результаты тестирования</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Библиотека</th>
+                    <th>Узлы</th>
+                    <th>Связи</th>
+                    <th>Время рендеринга (мс)</th>
+                    <th>Время компоновки (мс)</th>
+                    <th>Время стабилизации (мс)</th>
+                    <th>Память (МБ)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td rowspan="4">D3.js</td>
+                    <td>514</td>
+                    <td>314</td>
+                    <td>220.60</td>
+                    <td>3821.70</td>
+                    <td>3821.70</td>
+                    <td>54</td>
+                </tr>
+                <tr>
+                    <td>1014</td>
+                    <td>814</td>
+                    <td>220.60</td>
+                    <td>3918.80</td>
+                    <td>3918.80</td>
+                    <td>54</td>
+                </tr>
+                <tr>
+                    <td>5014</td>
+                    <td>4815</td>
+                    <td>220.60</td>
+                    <td>16304.60</td>
+                    <td>16304.60</td>
+                    <td>54</td>
+                </tr>
+                <tr>
+                    <td>13525</td>
+                    <td>21814</td>
+                    <td>220.60</td>
+                    <td>58688.00</td>
+                    <td>58688.00</td>
+                    <td>58</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+        <section data-transition="concave">
+            <h2>Результаты тестирования (продолжение)</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Библиотека</th>
+                    <th>Узлы</th>
+                    <th>Связи</th>
+                    <th>Время рендеринга (мс)</th>
+                    <th>Время компоновки (мс)</th>
+                    <th>Время стабилизации (мс)</th>
+                    <th>Память (МБ)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td rowspan="4">React Force Graph 2D</td>
+                    <td>514</td>
+                    <td>314</td>
+                    <td>31.70</td>
+                    <td>43.60</td>
+                    <td>43.60</td>
+                    <td>84</td>
+                </tr>
+                <tr>
+                    <td>1014</td>
+                    <td>814</td>
+                    <td>27.10</td>
+                    <td>33.10</td>
+                    <td>33.00</td>
+                    <td>75</td>
+                </tr>
+                <tr>
+                    <td>5014</td>
+                    <td>4815</td>
+                    <td>27.40</td>
+                    <td>47.10</td>
+                    <td>47.10</td>
+                    <td>91</td>
+                </tr>
+                <tr>
+                    <td>13525</td>
+                    <td>21814</td>
+                    <td>28.50</td>
+                    <td>59.80</td>
+                    <td>59.80</td>
+                    <td>141</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+        <section data-transition="concave">
+            <h2>Результаты тестирования (продолжение)</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Библиотека</th>
+                    <th>Узлы</th>
+                    <th>Связи</th>
+                    <th>Время рендеринга (мс)</th>
+                    <th>Время компоновки (мс)</th>
+                    <th>Время стабилизации (мс)</th>
+                    <th>Память (МБ)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td rowspan="4">React Sigma</td>
+                    <td>514</td>
+                    <td>314</td>
+                    <td>0.00</td>
+                    <td>2995.00</td>
+                    <td>2995.00</td>
+                    <td>131</td>
+                </tr>
+                <tr>
+                    <td>1014</td>
+                    <td>814</td>
+                    <td>23.30</td>
+                    <td>3008.80</td>
+                    <td>3008.80</td>
+                    <td>166</td>
+                </tr>
+                <tr>
+                    <td>5014</td>
+                    <td>4815</td>
+                    <td>0.00</td>
+                    <td>10733.00</td>
+                    <td>10733.00</td>
+                    <td>337</td>
+                </tr>
+                <tr>
+                    <td>13525</td>
+                    <td>21814</td>
+                    <td>0.00</td>
+                    <td>41280.60</td>
+                    <td>41280.60</td>
+                    <td>1022</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+        <section data-transition="concave">
+            <h2>Сравнение времени стабилизации</h2>
+            <div class="image-placeholder" style="height: 350px;">
+                <img src="/assets/webp/graph_stab.webp" alt="">
+            </div>
+            <table style="width: 80%; margin-top: 10px;">
+                <thead>
+                <tr>
+                    <th>Библиотека</th>
+                    <th>500→1000 узлов</th>
+                    <th>1000→5000 узлов</th>
+                    <th>5000→13500 узлов</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>D3.js</td>
+                    <td>1.03x</td>
+                    <td>4.16x</td>
+                    <td>3.60x</td>
+                </tr>
+                <tr>
+                    <td class="accent-text">React Force Graph 2D</td>
+                    <td class="accent-text">0.006x</td>
+                    <td class="accent-text">2.51x</td>
+                    <td class="accent-text">0.58x</td>
+                </tr>
+                <tr>
+                    <td>React Sigma</td>
+                    <td>1.00x</td>
+                    <td>3.57x</td>
+                    <td>3.85x</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+        <section data-transition="concave">
+            <h2>Сравнение использования памяти</h2>
+            <div class="image-placeholder" style="height: 350px;">
+                <img src="/assets/webp/grapg_mem.webp" alt="">
+            </div>
+            <ul style="width: 90%; margin: 0 auto;">
+                <li><b>D3.js:</b> <span class="accent-text">Минимальное потребление памяти</span>, практически не
+                    зависит от размера графа (54-58 МБ)
+                </li>
+                <li><b>React Force Graph:</b> <span class="accent-text">Умеренное увеличение потребления памяти</span> с
+                    ростом графа (75-141 МБ)
+                </li>
+                <li><b>React Sigma:</b> <span class="accent-text">Значительное увеличение потребления памяти</span> с
+                    ростом графа (131-1022 МБ)
+                </li>
+            </ul>
+        </section>
+
+
+        <section data-transition="concave">
+            <h2>Выводы</h2>
+            <div class="columns">
+                <div class="column">
+                    <h3 class="accent-text">React Force Graph 2D</h3>
+                    <ul class="smaller-text">
+                        <li>Наилучшая производительность</li>
+                        <li>Минимальное время компоновки</li>
+                        <li>Высокая частота кадров</li>
+                        <li>Умеренное потребление памяти</li>
+                        <li><b>Оптимально для больших графов</b></li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3 class="accent-text">D3.js</h3>
+                    <ul class="smaller-text">
+                        <li>Низкое потребление памяти</li>
+                        <li>Медленная компоновка</li>
+                        <li>Медленная стабилизация</li>
+                        <li>Высокая степень кастомизации</li>
+                        <li><b>Для случаев с критичными ресурсами памяти</b></li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3 class="accent-text">React Sigma</h3>
+                    <ul class="smaller-text">
+                        <li>Среднее время компоновки</li>
+                        <li>Высокое потребление памяти</li>
+                        <li>Хороший баланс функциональности</li>
+                        <li>Специализированные алгоритмы</li>
+                        <li><b>Для средних по размеру графов</b></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+        <section data-transition="concave">
+            <h2 style="text-align: center">Спасибо за внимание!</h2>
+        </section>
+
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.4.0/reveal.js"></script>
+<script>
+    Reveal.initialize({
+        width: 1200,
+        height: 700,
+        margin: 0.05,
+        minScale: 0.2,
+        maxScale: 2.0,
+        transition: 'slide',
+        transitionSpeed: 'default',
+        backgroundTransition: 'fade'
+    });
+</script>
+</body>
+</html>
