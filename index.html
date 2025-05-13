@@ -51,6 +51,21 @@
             font-size: 1.1em;
         }
 
+        .reveal .logo {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            width: 220px;
+            /*height: 121px;*/
+
+            img {
+                margin: 0;
+                padding: 0;
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+
         .reveal .chart-placeholder {
             width: 80%;
             height: 300px;
@@ -85,7 +100,7 @@
             max-height: 100%;
         }
 
-        .accent-text {
+        .reveal .accent-text {
             color: #42affa;
         }
 
@@ -109,6 +124,16 @@
 
         .reveal .column {
             width: 30%;
+        }
+
+        .reveal .slide-number {
+            font-size: 0.6em;
+        }
+
+        .reveal .controls {
+            left: 95px;
+            bottom: 0;
+            right: auto;
         }
     </style>
     <script>
@@ -134,8 +159,20 @@
 
 
         <section data-transition="concave">
+            <div style="display: flex; justify-content: flex-end; align-items: center; gap: 64px;">
+                <div class="logo">
+                    <img src="/assets/webp/itmo_logo.webp" alt="">
+                </div>
+                <div class="logo" style="width:260px; padding-top: 25px">
+                    <img src="/assets/webp/sut_logo_orange.webp" alt="">
+                </div>
+            </div>
             <h1>Сравнительный анализ JavaScript-библиотек для визуализации графов в системе мониторинга беспроводных
                 сетей</h1>
+            <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.8em">
+                <div>Филимонов В.Е. (магистр, ст. гр. Р4108, ИТМО)</div>
+                <div>Киструга А.Ю. (аспирант, ст. гр. 1001А-21, СПбГУТ)</div>
+            </div>
         </section>
 
 
@@ -145,7 +182,9 @@
                 <div style="width: 48%;">
                     <p><b>Цель исследования:</b></p>
                     <ul>
-                        <li>Определение оптимальной JavaScript-библиотеки для визуализации графов в системе мониторинга беспроводных сетей</li>
+                        <li>Определение оптимальной JavaScript-библиотеки для визуализации графов в системе мониторинга
+                            беспроводных сетей
+                        </li>
                     </ul>
                     <p><b>Задачи исследования:</b></p>
                     <ol>
@@ -221,8 +260,9 @@
 
 
         <section data-transition="concave">
-            <h2>Тестовые данные и окружение</h2>
-            <table class="compact-table" style="border: 1px solid #666; width: 100%; margin-top: 20px;">
+            <h2 style="margin-bottom: 0">Тестовые данные и окружение</h2>
+            <table class="compact-table"
+                   style="font-size: 0.7em; border: 1px solid #666; width: 100%; margin-top: 20px;">
                 <thead>
                 <tr>
                     <th colspan="2" style="border: 1px solid #666; padding: 8px;">Параметры тестовой платформы</th>
@@ -251,13 +291,22 @@
                 </tr>
                 </tbody>
             </table>
-            <p><b>Набор данных:</b></p>
-            <ul>
-                <li>Более 13000 уникальных устройств</li>
-                <li>Около 50 защищаемых точек доступа WLAN</li>
-                <li>Множество сторонних устройств</li>
-                <li>Отслеживание несколькими сенсорами</li>
-            </ul>
+            <div style="display: flex; gap: 10px; max-height: 38vh;">
+                <div><p><b>Набор данных:</b></p>
+                    <ul style="font-size: 0.7em">
+                        <li>Более 13000 уникальных устройств</li>
+                        <li>Около 50 защищаемых точек доступа WLAN</li>
+                        <li>Множество сторонних устройств</li>
+                        <li>Отслеживание несколькими сенсорами</li>
+                    </ul>
+                </div>
+                <div style="width: 35%; max-height: 100%; position:relative; margin: 0 auto;">
+                    <img style="
+                    position: absolute;
+                    top: -80px;
+                    padding: 0; min-height: 150%; margin: 0" src="/assets/graph.png" alt="">
+                </div>
+            </div>
         </section>
 
 
@@ -320,7 +369,7 @@
                     <td>Тип рендеринга</td>
                     <td>SVG, Canvas</td>
                     <td>WebGL, Canvas</td>
-                    <td>Canvas, WebGL</td>
+                    <td>WebGL, Canvas</td>
                 </tr>
                 <tr>
                     <td>Поддержка 3D</td>
@@ -332,13 +381,13 @@
                     <td>Алгоритмы компоновки</td>
                     <td>Многочисленные</td>
                     <td>Force-directed</td>
-                    <td>ForceAtlas2, другие</td>
+                    <td>ForceAtlas2</td>
                 </tr>
                 <tr>
                     <td>GitHub Stars</td>
-                    <td>>104K</td>
-                    <td>>7K</td>
-                    <td>>400</td>
+                    <td>>111 тыс.</td>
+                    <td>>5 тыс.</td>
+                    <td>>12 тыс</td>
                 </tr>
                 </tbody>
             </table>
@@ -346,36 +395,38 @@
 
 
         <section data-transition="concave">
-            <h2>Методика оценки производительности</h2>
-            <div style="display: flex; justify-content: space-between;">
-                <div style="width: 48%;">
+            <h2 style="margin-bottom: 0">Методика оценки производительности</h2>
+            <div style="display: flex; justify-content: space-between; font-size: 0.7em">
+                <div style="width: 40%;">
                     <p><b>Ключевые показатели:</b></p>
                     <ul>
                         <li>Время рендеринга (мс)</li>
-                        <li>Время компоновки (мс)</li>
-                        <li>Время стабилизации (мс)</li>
+                        <li>Время инициализации графа (мс)</li>
                         <li>Использование памяти (МБ)</li>
                         <li>Количество узлов</li>
                         <li>Количество связей</li>
                     </ul>
                 </div>
-                <div style="width: 48%;">
+                <div style="width: 56%;">
                     <p><b>Сценарии тестирования:</b></p>
                     <ol>
                         <li>Визуализация графа с различным количеством узлов (500, 1000, 5000, ~13500)</li>
-                        <li>Стабилизация графа после начальной загрузки</li>
+                        <li>Инициализация графа после начальной загрузки</li>
                         <li>Кастомизация визуального представления узлов и связей</li>
                     </ol>
                 </div>
             </div>
-        </section>
-        <section data-transition="concave">
-            <h2>Демонстрация D3.js</h2>
-            <div class="image-placeholder" style="height: 600px;">
-                <img src="/assets/webp/d3_5000.webp" alt="">
+            <div style="display: flex; max-height: 34vh; justify-content: center">
+                <img style="margin: 0; max-height: 100%; max-width: 100%; object-fit: contain" src="/assets/webp/two-sensors.webp" alt="">
             </div>
-
         </section>
+<!--        <section data-transition="concave">-->
+<!--            <h2>Демонстрация D3.js</h2>-->
+<!--            <div class="image-placeholder" style="height: 600px;">-->
+<!--                <img src="/assets/webp/d3_5000.webp" alt="">-->
+<!--            </div>-->
+
+<!--        </section>-->
         <section data-transition="concave">
             <h2>Демонстрация D3.js</h2>
             <div class="image-placeholder" style="height: 600px;">
@@ -393,8 +444,7 @@
                     <th>Узлы</th>
                     <th>Связи</th>
                     <th>Время рендеринга (мс)</th>
-                    <th>Время компоновки (мс)</th>
-                    <th>Время стабилизации (мс)</th>
+                    <th>Время инициализации графа (мс)</th>
                     <th>Память (МБ)</th>
                 </tr>
                 </thead>
@@ -405,14 +455,12 @@
                     <td>314</td>
                     <td>220.60</td>
                     <td>3821.70</td>
-                    <td>3821.70</td>
                     <td>54</td>
                 </tr>
                 <tr>
                     <td>1014</td>
                     <td>814</td>
                     <td>220.60</td>
-                    <td>3918.80</td>
                     <td>3918.80</td>
                     <td>54</td>
                 </tr>
@@ -421,14 +469,12 @@
                     <td>4815</td>
                     <td>220.60</td>
                     <td>16304.60</td>
-                    <td>16304.60</td>
                     <td>54</td>
                 </tr>
                 <tr>
                     <td>13525</td>
                     <td>21814</td>
                     <td>220.60</td>
-                    <td>58688.00</td>
                     <td>58688.00</td>
                     <td>58</td>
                 </tr>
@@ -446,18 +492,16 @@
                     <th>Узлы</th>
                     <th>Связи</th>
                     <th>Время рендеринга (мс)</th>
-                    <th>Время компоновки (мс)</th>
-                    <th>Время стабилизации (мс)</th>
+                    <th>Время инициализации графа (мс)</th>
                     <th>Память (МБ)</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td rowspan="4">React Force Graph 2D</td>
+                    <td rowspan="4">React Force Graph</td>
                     <td>514</td>
                     <td>314</td>
                     <td>31.70</td>
-                    <td>43.60</td>
                     <td>43.60</td>
                     <td>84</td>
                 </tr>
@@ -465,7 +509,6 @@
                     <td>1014</td>
                     <td>814</td>
                     <td>27.10</td>
-                    <td>33.10</td>
                     <td>33.00</td>
                     <td>75</td>
                 </tr>
@@ -474,14 +517,12 @@
                     <td>4815</td>
                     <td>27.40</td>
                     <td>47.10</td>
-                    <td>47.10</td>
                     <td>91</td>
                 </tr>
                 <tr>
                     <td>13525</td>
                     <td>21814</td>
                     <td>28.50</td>
-                    <td>59.80</td>
                     <td>59.80</td>
                     <td>141</td>
                 </tr>
@@ -499,8 +540,7 @@
                     <th>Узлы</th>
                     <th>Связи</th>
                     <th>Время рендеринга (мс)</th>
-                    <th>Время компоновки (мс)</th>
-                    <th>Время стабилизации (мс)</th>
+                    <th>Время инициализации графа (мс)</th>
                     <th>Память (МБ)</th>
                 </tr>
                 </thead>
@@ -509,32 +549,28 @@
                     <td rowspan="4">React Sigma</td>
                     <td>514</td>
                     <td>314</td>
-                    <td>0.00</td>
-                    <td>2995.00</td>
+                    <td>30.60</td>
                     <td>2995.00</td>
                     <td>131</td>
                 </tr>
                 <tr>
                     <td>1014</td>
                     <td>814</td>
-                    <td>23.30</td>
-                    <td>3008.80</td>
+                    <td>42.30</td>
                     <td>3008.80</td>
                     <td>166</td>
                 </tr>
                 <tr>
                     <td>5014</td>
                     <td>4815</td>
-                    <td>0.00</td>
-                    <td>10733.00</td>
+                    <td>79.50</td>
                     <td>10733.00</td>
                     <td>337</td>
                 </tr>
                 <tr>
                     <td>13525</td>
                     <td>21814</td>
-                    <td>0.00</td>
-                    <td>41280.60</td>
+                    <td>94.20</td>
                     <td>41280.60</td>
                     <td>1022</td>
                 </tr>
@@ -544,7 +580,7 @@
 
 
         <section data-transition="concave">
-            <h2>Сравнение времени стабилизации</h2>
+            <h2>Сравнение времени инициализации</h2>
             <div class="image-placeholder" style="height: 350px;">
                 <img src="/assets/webp/graph_stab.webp" alt="">
             </div>
@@ -565,7 +601,7 @@
                     <td>3.60x</td>
                 </tr>
                 <tr>
-                    <td class="accent-text">React Force Graph 2D</td>
+                    <td class="accent-text">React Force Graph</td>
                     <td class="accent-text">0.006x</td>
                     <td class="accent-text">2.51x</td>
                     <td class="accent-text">0.58x</td>
@@ -604,29 +640,28 @@
             <h2>Выводы</h2>
             <div class="columns">
                 <div class="column">
-                    <h3 class="accent-text">React Force Graph 2D</h3>
+                    <h3 class="accent-text">React Force Graph</h3>
                     <ul class="smaller-text">
                         <li>Наилучшая производительность</li>
-                        <li>Минимальное время компоновки</li>
+                        <li>Минимальное время инициализации</li>
                         <li>Высокая частота кадров</li>
                         <li>Умеренное потребление памяти</li>
                         <li><b>Оптимально для больших графов</b></li>
                     </ul>
                 </div>
                 <div class="column">
-                    <h3 class="accent-text">D3.js</h3>
+                    <h3>D3.js</h3>
                     <ul class="smaller-text">
                         <li>Низкое потребление памяти</li>
-                        <li>Медленная компоновка</li>
-                        <li>Медленная стабилизация</li>
+                        <li>Медленная инициализации</li>
                         <li>Высокая степень кастомизации</li>
                         <li><b>Для случаев с критичными ресурсами памяти</b></li>
                     </ul>
                 </div>
                 <div class="column">
-                    <h3 class="accent-text">React Sigma</h3>
+                    <h3 >React Sigma</h3>
                     <ul class="smaller-text">
-                        <li>Среднее время компоновки</li>
+                        <li>Среднее время инициализации</li>
                         <li>Высокое потребление памяти</li>
                         <li>Хороший баланс функциональности</li>
                         <li>Специализированные алгоритмы</li>
@@ -653,7 +688,8 @@
         maxScale: 2.0,
         transition: 'slide',
         transitionSpeed: 'default',
-        backgroundTransition: 'fade'
+        backgroundTransition: 'fade',
+        slideNumber: true,
     });
 </script>
 </body>
