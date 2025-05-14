@@ -218,12 +218,17 @@
 
         <section data-transition="concave">
             <h2>Актуальность</h2>
-            <ul>
-                <li>Мониторинг беспроводных сетей Wi-Fi требует эффективной визуализации данных в виде графов</li>
-                <li>Графовое представление помогает выявлять несанкционированные подключения</li>
-                <li>Визуализация упрощает обнаружение аномальных связей</li>
-                <li>Обеспечивает оперативное реагирование на инциденты безопасности</li>
-            </ul>
+            <div style="display: flex; gap: 16px">
+                <ul style="font-size: 0.7em; width: 50%;margin: 0">
+                    <li>Мониторинг беспроводных сетей Wi-Fi требует эффективной визуализации данных в виде графов</li>
+                    <li>Графовое представление помогает выявлять несанкционированные подключения</li>
+                    <li>Визуализация упрощает обнаружение аномальных связей</li>
+                    <li>Обеспечивает оперативное реагирование на инциденты безопасности</li>
+                </ul>
+                <div style="width: 50%">
+                    <img style="margin: 0" src="/assets/graph.png" alt="">
+                </div>
+            </div>
         </section>
 
 
@@ -291,21 +296,13 @@
                 </tr>
                 </tbody>
             </table>
-            <div style="display: flex; gap: 10px; max-height: 38vh;">
-                <div><p><b>Набор данных:</b></p>
-                    <ul style="font-size: 0.7em">
-                        <li>Более 13000 уникальных устройств</li>
-                        <li>Около 50 защищаемых точек доступа WLAN</li>
-                        <li>Множество сторонних устройств</li>
-                        <li>Отслеживание несколькими сенсорами</li>
-                    </ul>
-                </div>
-                <div style="width: 35%; max-height: 100%; position:relative; margin: 0 auto;">
-                    <img style="
-                    position: absolute;
-                    top: -80px;
-                    padding: 0; min-height: 150%; margin: 0" src="/assets/graph.png" alt="">
-                </div>
+            <div><p><b>Набор данных:</b></p>
+                <ul>
+                    <li>Более 13000 уникальных устройств</li>
+                    <li>Около 50 защищаемых точек доступа WLAN</li>
+                    <li>Множество сторонних устройств</li>
+                    <li>Отслеживание несколькими сенсорами</li>
+                </ul>
             </div>
         </section>
 
@@ -417,16 +414,17 @@
                 </div>
             </div>
             <div style="display: flex; max-height: 34vh; justify-content: center">
-                <img style="margin: 0; max-height: 100%; max-width: 100%; object-fit: contain" src="/assets/webp/two-sensors.webp" alt="">
+                <img style="margin: 0; max-height: 100%; max-width: 100%; object-fit: contain"
+                     src="/assets/webp/two-sensors.webp" alt="">
             </div>
         </section>
-<!--        <section data-transition="concave">-->
-<!--            <h2>Демонстрация D3.js</h2>-->
-<!--            <div class="image-placeholder" style="height: 600px;">-->
-<!--                <img src="/assets/webp/d3_5000.webp" alt="">-->
-<!--            </div>-->
+        <!--        <section data-transition="concave">-->
+        <!--            <h2>Демонстрация D3.js</h2>-->
+        <!--            <div class="image-placeholder" style="height: 600px;">-->
+        <!--                <img src="/assets/webp/d3_5000.webp" alt="">-->
+        <!--            </div>-->
 
-<!--        </section>-->
+        <!--        </section>-->
         <section data-transition="concave">
             <h2>Демонстрация D3.js</h2>
             <div class="image-placeholder" style="height: 600px;">
@@ -659,7 +657,7 @@
                     </ul>
                 </div>
                 <div class="column">
-                    <h3 >React Sigma</h3>
+                    <h3>React Sigma</h3>
                     <ul class="smaller-text">
                         <li>Среднее время инициализации</li>
                         <li>Высокое потребление памяти</li>
